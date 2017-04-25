@@ -1,6 +1,6 @@
 feature 'Testing infrastructure' do
 
-  scenario 'entering name' do
+  scenario 'entering names' do
     visit('/')
     fill_in('player_one', with: 'Jeremy')
     fill_in('player_two', with: 'Adam')
