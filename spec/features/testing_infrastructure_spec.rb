@@ -1,6 +1,10 @@
 feature 'Testing infrastructure' do
-  scenario 'has contents' do
+
+  scenario 'entering name' do
     visit('/')
-    expect(page).to have_content('Testing infrastructure working!')
+    fill_in('player_one', with: 'Jeremy')
+    fill_in('player_two', with: 'Adam')
+    click_button('Submit')
+    expect(page).to have_content('Jeremy vs Adam for the championship!')
   end
 end
