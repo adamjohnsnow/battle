@@ -1,7 +1,9 @@
-<h1> <%= @player_one %> vs <%= @player_two %> for the World Heavyweight Championship!</h1>
+<h1> <%= @player_one.name %> vs <%= @player_two.name %> for the Makers Academy Wrestling Championship!</h1>
 <p>
   <p>
     <div>
-      <%= @player_one %>: <%= session[:p1_hp] %>HP <p>
-      <%= @player_two %>: <%= session[:p2_hp] %>HP
+      <%= @player_one.name %> <%= @player_one.hp %>HP vs. <%= @player_two.name %> <%= @player_two.hp %>HP
     </div>
+    <form action='/attack' method='post'>
+      <input type='submit' value='ATTACK'>
+    </form>

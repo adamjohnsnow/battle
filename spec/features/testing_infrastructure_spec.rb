@@ -1,17 +1,29 @@
 feature 'Testing infrastructure' do
 
-  scenario 'entering names' do
+  scenario 'have submit button on homepage' do
     visit('/')
-    fill_in('player_one', with: 'The Undertaker')
-    fill_in('player_two', with: 'Daniel Bryan')
-    click_button('Submit')
-    expect(page).to have_content('The Undertaker vs Daniel Bryan for the World Heavyweight Championship!')
+    expect(page).to have_button('Submit')
   end
-  scenario 'Have HP' do
+
+  scenario 'have name field on homepage' do
     visit('/')
-    fill_in('player_one', with: 'The Undertaker')
-    fill_in('player_two', with: 'Daniel Bryan')
-    click_button('Submit')
-    expect(page).to have_content('The Undertaker: 60HP')
+    expect(page).to have_field('player_1')
   end
+
+  scenario 'entering player names' do
+    sign_in_and_play
+    expect(page).to have_content('Filipe vs Filipe
+    for the Makers Academy Wrestling Championship!')
+  end
+
+  scenario 'players have HP' do
+    sign_in_and_play
+    expect(page).to have_content('Filipe 60HP')
+  end
+  
+  scenario 'should return names & hit points' do
+    sign_in_and_play
+    expect(page).to have_content('Filipe 60HP vs. Filipe 60HP')
+  end
+
 end
