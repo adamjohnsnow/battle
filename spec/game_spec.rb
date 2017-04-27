@@ -14,11 +14,11 @@ describe Game do
     end
     it 'should switch turns' do
       game.switch_turns
-      expect(game.current_turn).to eq(player2)
+      expect(game.players[0]).to eq(player2)
     end
     it 'should switch turns back' do
       2.times { game.switch_turns }
-      expect(game.current_turn).to eq(player1)
+      expect(game.players[0]).to eq(player1)
     end
   end
 end

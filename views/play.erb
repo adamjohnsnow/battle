@@ -1,11 +1,12 @@
-<h1> <%= @player_one.name %> vs <%= @player_two.name %> for the Makers Academy Wrestling Championship!</h1>
+<h1> <%= @game.players[0].name %> vs <%= @game.players[1].name %> for the Makers Academy Wrestling Championship!</h1>
 <p>
   <p>
     <div>
-      <%= @player_one.name %> <%= @player_one.hp %>HP vs. <%= @player_two.name %> <%= @player_two.hp %>HP
+      <%= @game.players[0].name %> <%= @game.players[0].hp %>HP <p>
+      <%= @game.players[1].name %> <%= @game.players[1].hp %>HP
     </div>
     <p>
-      <%= @current_turn %>'s turn!
+      <%= @game.players[0].name %>'s turn!
       <p>
 
       <form action='/attack' method='post'>

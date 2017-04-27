@@ -14,14 +14,19 @@ feature 'Testing infrastructure' do
     expect(page).to have_content('PlayerOne vs PlayerTwo
     for the Makers Academy Wrestling Championship!')
   end
+
+  scenario 'returns names & hit points' do
+    sign_in_and_play
+    expect(page).to have_content('PlayerOne 60HP')
+  end
+
+  scenario 'returns names & hit points' do
+    sign_in_and_play
+    expect(page).to have_content('PlayerTwo 60HP')
+  end
 end
 
 feature 'Playing the game' do
-  scenario 'returns names & hit points' do
-    sign_in_and_play
-    expect(page).to have_content('PlayerOne 60HP vs. PlayerTwo 60HP')
-  end
-
   scenario 'starts with p1 turn' do
     sign_in_and_play
     expect(page).to have_content('PlayerOne\'s turn')
@@ -39,7 +44,7 @@ feature 'Playing the game' do
     click_button 'ATTACK'
     expect(page).to have_content('PlayerTwo got hit!')
   end
-  
+
   scenario 'player one win' do
     sign_in_and_play
     play_full_game
