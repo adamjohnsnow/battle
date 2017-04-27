@@ -39,4 +39,10 @@ feature 'Playing the game' do
     click_button 'ATTACK'
     expect(page).to have_content('PlayerTwo got hit!')
   end
+  
+  scenario 'player one win' do
+    sign_in_and_play
+    play_full_game
+    expect(page).to have_content('PlayerOne WINS!')
+  end
 end

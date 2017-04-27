@@ -20,20 +20,16 @@ class Battle < Sinatra::Base
   get '/play' do
     @player_one = $game.player_one
     @player_two = $game.player_two
-    @turn = $game.current_turn
+    @player_message = $game.game_state
     erb(:play)
   end
 
   post '/attack' do
     $game.attack
-    redirect '/confirm'
+    redirect '/play'
   end
 
-  get '/confirm' do
-    @player_one = $game.player_one
-    @player_two = $game.player_two
-    @turn = $game.current_turn
-    erb(:confirm)
+  post '/next' do
+    redirect '/play'
   end
-
 end

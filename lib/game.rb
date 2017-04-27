@@ -1,12 +1,13 @@
 require 'pry'
 
 class Game
-  attr_reader :player_one, :player_two, :current_turn
+  attr_reader :player_one, :player_two, :current_turn, :game_state
 
   def initialize(player_one, player_two)
     @player_one = player_one
     @player_two = player_two
     @current_turn = @player_one
+    @game_state = "#{@current_turn.name}\'s turn!"
   end
 
   def attack

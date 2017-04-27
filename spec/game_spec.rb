@@ -1,8 +1,8 @@
 require 'game'
 
 describe Game do
-  let(:player1) { double :player1 }
-  let(:player2) { double :player2 }
+  let(:player1) { double :player1, name: 'P1' }
+  let(:player2) { double :player2, name: 'P2' }
   let(:game) { described_class.new(player1, player2) }
   before { allow(player1).to receive(:take_damage) }
   before { allow(player2).to receive(:take_damage) }
