@@ -1,6 +1,7 @@
 class Player
 
-  attr_reader :name, :hp
+  attr_reader :name
+  attr_accessor :hp
   STARTING_HP = 60
 
   def initialize(name)
@@ -8,4 +9,8 @@ class Player
     @hp = STARTING_HP
   end
 
+  def take_damage
+    @hp -= 10
+  end
+  
 end

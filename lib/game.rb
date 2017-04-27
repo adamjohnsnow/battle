@@ -1,14 +1,16 @@
+require 'pry'
+
 class Game
 
-  attr_reader :player1, :player2
+  attr_reader :player_one, :player_two
 
-  def initialize(player1, player2)
-    @player1 = player1
-    @player2 = player2
+  def initialize(player_one, player_two)
+    @player_one = player_one
+    @player_two = player_two
   end
 
   def attack(victim)
-    victim.hp -= 10
+    victim.take_damage
   end
 
 end
