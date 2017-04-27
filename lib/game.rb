@@ -1,25 +1,28 @@
+# understands whose turn it is
+
 require 'pry'
 
 class Game
-  attr_reader :player_one, :player_two, :current_turn, :game_state
+  attr_reader :player_one, :player_two, :current_turn, :current_victim
 
   def initialize(player_one, player_two)
     @player_one = player_one
     @player_two = player_two
     @current_turn = @player_one
-    @game_state = "#{@current_turn.name}\'s turn!"
+    @current_victim = @player_two
   end
 
   def attack
-    switch_turns
-    @current_turn.take_damage
+    @current_victim.take_damage
   end
 
   def switch_turns
     if @current_turn == @player_one
       @current_turn = @player_two
+      @current_victim = @player_one
     else
       @current_turn = @player_one
+      @current_victim = @player_two
     end
   end
 

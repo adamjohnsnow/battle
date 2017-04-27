@@ -20,16 +20,34 @@ class Battle < Sinatra::Base
   get '/play' do
     @player_one = $game.player_one
     @player_two = $game.player_two
-    @player_message = $game.game_state
+    @current_turn = $game.current_turn.name
     erb(:play)
   end
 
   post '/attack' do
     $game.attack
-    redirect '/play'
+    if $game.player_one.hp <=0 || $game.player_two.hp <=0
+      redirect '/win'
+    else
+      redirect '/hit'
+    end
+  end
+
+  get '/hit' do
+    @player_one = $game.player_one
+    @player_two = $game.player_two
+    @current_turn = $game.current_victim.name
+    erb(:confirm)
   end
 
   post '/next' do
+    $game.switch_turns
     redirect '/play'
   end
+
+  get '/win' do
+    @winner = $game.current_turn.name
+    erb(:win)
+  end
+
 end

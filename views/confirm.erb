@@ -5,5 +5,8 @@
       <%= @player_one.name %> <%= @player_one.hp %>HP vs. <%= @player_two.name %> <%= @player_two.hp %>HP
     </div>
     <p>
-      <%= @turn.name %> got hit!
+      <%= @current_turn %> got hit!
       <p>
+        <form action='/next' method="post">
+        <input type='submit' value='Next turn' name='Next'>
+        </form>
