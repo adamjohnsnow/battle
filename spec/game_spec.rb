@@ -5,6 +5,7 @@ describe Game do
   let(:player2) { double :player2, name: 'P2' }
   let(:game) { described_class.new(player1, player2) }
   before { allow(player1).to receive(:take_damage) }
+  before { allow(player1).to receive(:restore_health) }
   before { allow(player2).to receive(:take_damage) }
 
   describe '#attack' do
@@ -19,6 +20,12 @@ describe Game do
     it 'should switch turns back' do
       2.times { game.switch_turns }
       expect(game.players[0]).to eq(player1)
+    end
+  end
+  describe '#heal' do
+    it 'should heal player 1' do
+      expect(player1).to receive(:restore_health)
+      game.heal(10)
     end
   end
 end

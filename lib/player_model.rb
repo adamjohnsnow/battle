@@ -11,4 +11,8 @@ class Player
   def take_damage(hit)
     @hp -= hit
   end
+
+  def restore_health(health)
+    @hp += health
+  end
 end

@@ -28,10 +28,36 @@ class Battle < Sinatra::Base
     miss_redirect(hit)
   end
 
+  post '/heal' do
+    health = Chance.roll
+    heal_fail_redirect(health)
+  end
+
   get '/hit' do
     @message = 'got hit!'
     @game = Game.instance
     @player = @game.players[1].name
+    erb(:confirm)
+  end
+
+  get '/crit' do
+    @message = 'CRITICAL HIT!'
+    @game = Game.instance
+    @player = @game.players[1].name
+    erb(:confirm)
+  end
+
+  get '/healed' do
+    @message = 'healed!'
+    @game = Game.instance
+    @player = @game.players[0].name
+    erb(:confirm)
+  end
+
+  get '/recovered' do
+    @message = 'RECOVERED!'
+    @game = Game.instance
+    @player = @game.players[0].name
     erb(:confirm)
   end
 
@@ -59,9 +85,21 @@ class Battle < Sinatra::Base
     hits(hit)
   end
 
+  def heal_fail_redirect(health)
+    redirect '/missed' if health.zero?
+    heals(health)
+  end
+
+  def heals(health)
+    Game.instance.heal(health)
+    redirect '/recovered' if health > 10
+    redirect '/healed'
+  end
+
   def hits(hit)
     Game.instance.attack(hit)
     redirect '/win' if end_game?
+    redirect '/crit' if hit > 10
     redirect '/hit'
   end
 

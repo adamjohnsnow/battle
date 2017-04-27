@@ -41,8 +41,30 @@ feature 'Playing the game' do
 
   scenario 'reports who got hit' do
     sign_in_and_play
+    srand(111)
     click_button 'ATTACK'
     expect(page).to have_content('PlayerTwo got hit!')
+  end
+
+  scenario 'reports who got critical hit' do
+    sign_in_and_play
+    srand(123)
+    click_button 'ATTACK'
+    expect(page).to have_content('PlayerTwo CRITICAL HIT!')
+  end
+
+  scenario 'reports who got healed' do
+    sign_in_and_play
+    srand(111)
+    click_button 'HEAL'
+    expect(page).to have_content('PlayerOne healed!')
+  end
+
+  scenario 'reports who got recovered' do
+    sign_in_and_play
+    srand(123)
+    click_button 'HEAL'
+    expect(page).to have_content('PlayerOne RECOVERED!')
   end
 
   scenario 'player one win' do

@@ -22,4 +22,8 @@ class Game
   def switch_turns
     @players.reverse!
   end
+
+  def heal(health)
+    @players[0].restore_health(health)
+  end
 end

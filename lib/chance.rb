@@ -14,6 +14,6 @@ class Chance
       MEDIUM_PTS,
       MAXIMUM_PTS
     ]
-    options[rand(0..(@@options.count - 1))]
+    options[rand(0..(options.count - 1))]
   end
 end
