@@ -1,5 +1,4 @@
 class Player
-
   attr_reader :name
   attr_accessor :hp
   STARTING_HP = 60
@@ -12,5 +11,4 @@ class Player
   def take_damage
     @hp -= 10
   end
-  
 end

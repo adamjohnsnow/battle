@@ -1,0 +1,6 @@
+clear && pry
+load './lib/game.rb'
+load './lib/player_model.rb'
+p1 = Player.new('Dave')
+p2 = Player.new('Stu')
+game = Game.new(p1,p2)
