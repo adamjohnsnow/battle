@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require './lib/player_model'
 require './lib/game'
+require './lib/chance'
+require 'pry'
 
 # manages player journey through game
 
@@ -22,16 +24,14 @@ class Battle < Sinatra::Base
   end
 
   post '/attack' do
-    Game.instance.attack
-    if Game.instance.players[0].hp <= 0 || Game.instance.players[1].hp <= 0
-      redirect '/win'
-    else
-      redirect '/hit'
-    end
+    hit = Chance.roll
+    miss_redirect(hit)
   end
 
   get '/hit' do
+    @message = 'got hit!'
     @game = Game.instance
+    @player = @game.players[1].name
     erb(:confirm)
   end
 
@@ -43,5 +43,29 @@ class Battle < Sinatra::Base
   get '/win' do
     @winner = Game.instance.players[0].name
     erb(:win)
+  end
+
+  get '/missed' do
+    @message = 'missed!'
+    @game = Game.instance
+    @player = Game.instance.players[0].name
+    erb(:confirm)
+  end
+
+  private
+
+  def miss_redirect(hit)
+    redirect '/missed' if hit.zero?
+    hits(hit)
+  end
+
+  def hits(hit)
+    Game.instance.attack(hit)
+    redirect '/win' if end_game?
+    redirect '/hit'
+  end
+
+  def end_game?
+    Game.instance.players[0].hp <= 0 || Game.instance.players[1].hp <= 0
   end
 end

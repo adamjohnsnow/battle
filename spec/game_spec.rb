@@ -10,7 +10,7 @@ describe Game do
   describe '#attack' do
     it 'should hit player 2' do
       expect(player2).to receive(:take_damage)
-      game.attack
+      game.attack(10)
     end
     it 'should switch turns' do
       game.switch_turns
