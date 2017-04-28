@@ -3,7 +3,7 @@
   <div class="container-fluid">
 
   <img src='https://goo.gl/iogD7c' class="img-responsive" height="150">
-  <h1 class="text-primary text-centre"> <%= @game.last_move %> <p> <%= @game.players[0].name %>'s turn! </h1>
+  <h1 class="text-primary text-centre"> PlayerOne's turn! </h1>
   <img src= 'https://goo.gl/iWAup3' align="middle" class="img-responsive" height="600">
 
 
@@ -11,7 +11,7 @@
 </div>
 <div class="row container-fluid">
   <div class="col-sm-3 text-centre">
-    <%= @game.player_one.name %> <%= @game.player_one.hp %>HP
+    PlayerOne 100HP
   </div>
   <div class="col-sm-3 text-centre">
     <form action='/attack' method='post'>
@@ -24,6 +24,6 @@
     </form>
   </div>
   <div class="col-sm-3 text-centre">
-    <%= @game.player_two.name %> <%= @game.player_two.hp %>HP
+    The Rock 100HP
   </div>
 </div>

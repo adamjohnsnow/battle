@@ -14,6 +14,12 @@ feature 'Testing infrastructure' do
     expect(page).to have_content('PlayerOne')
   end
 
+  scenario 'one_player' do
+    srand(7)
+    one_player
+    expect(page).to have_content('The Rock')
+  end
+  
   scenario 'returns names & hit points' do
     sign_in_and_play
     expect(page).to have_content('PlayerOne 100HP')

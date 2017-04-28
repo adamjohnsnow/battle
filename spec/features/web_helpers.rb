@@ -13,3 +13,9 @@ def play_full_game
   end
   click_button 'ATTACK'
 end
+
+def one_player
+  visit('/')
+  fill_in('player_1', with: 'PlayerOne')
+  click_button('Submit')
+end

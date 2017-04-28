@@ -1,8 +1,10 @@
 require 'sinatra/base'
 require './lib/player_model'
 require './lib/game'
+require './lib/bot'
 require './lib/chance'
 require 'bootstrap'
+require "pry"
 
 # manages player journey through game
 
@@ -13,97 +15,46 @@ class Battle < Sinatra::Base
 
   post '/names' do
     p1 = Player.new(params[:player_1])
-    p2 = Player.new(params[:player_2])
+    params[:player_2] == '' ? p2 = Bot.new : p2 = Player.new(params[:player_2])
     @game = Game.start(p1, p2)
     redirect '/play'
   end
 
   get '/play' do
     @game = Game.instance
+    redirect '/win' if end_game?
     erb(:play)
   end
 
   post '/attack' do
-    hit = Chance.roll
-    miss_redirect(hit)
+    Game.instance.attack
+    Game.instance.switch_turns
+    redirect '/confirm' if Game.instance.player_two.class == Bot
+    redirect '/play'
   end
 
   post '/heal' do
-    health = Chance.roll
-    heal_fail_redirect(health)
-  end
-
-  get '/hit' do
-    @message = Chance.hit_msg
-    @game = Game.instance
-    @player = @game.players[1].name
-    erb(:confirm)
-  end
-
-  get '/crit' do
-    @message = Chance.crit_msg
-    @game = Game.instance
-    @player = @game.players[1].name
-    erb(:confirm)
-  end
-
-  get '/healed' do
-    @message = 'healed!'
-    @game = Game.instance
-    @player = @game.players[0].name
-    erb(:confirm)
-  end
-
-  get '/recovered' do
-    @message = 'RECOVERED!'
-    @game = Game.instance
-    @player = @game.players[0].name
-    erb(:confirm)
-  end
-
-  post '/next' do
+    Game.instance.heal
     Game.instance.switch_turns
     redirect '/play'
   end
 
-  get '/win' do
-    @winner = Game.instance.players[0].name
-    erb(:win)
+  get '/confirm' do
+    @game = Game.instance
+    erb(:confirm)
   end
 
-  get '/missed' do
-    @message = 'missed!'
-    @game = Game.instance
-    @player = Game.instance.players[0].name
-    erb(:confirm)
+  get '/win' do
+    @winner = Game.instance.players[1].name
+    erb(:win)
   end
 
   post '/new' do
     redirect '/'
   end
-  private
 
-  def miss_redirect(hit)
-    redirect '/missed' if hit.zero?
-    hits(hit)
-  end
+  def single_player?
 
-  def heal_fail_redirect(health)
-    redirect '/missed' if health.zero?
-    heals(health)
-  end
-
-  def heals(health)
-    Game.instance.heal(health)
-    redirect '/recovered' if health > 10
-    redirect '/healed'
-  end
-
-  def hits(hit)
-    Game.instance.attack(hit)
-    redirect '/win' if end_game?
-    redirect '/crit' if hit > 10
-    redirect '/hit'
   end
 
   def end_game?

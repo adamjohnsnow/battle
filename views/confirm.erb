@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
 <div class="container-fluid">
 
-<img src='https://goo.gl/iogD7c' class="img-responsive" height="150">
-<h1 class="text-primary text-centre"> <%= @player %> <%= @message %> </h1>
-<img src= 'https://goo.gl/iWAup3' align="middle" class="img-responsive" height="600">
+  <img src='https://goo.gl/iogD7c' class="img-responsive" height="150">
+  <h1 class="text-primary text-centre"> <%= @game.last_move %> <p> <p> <p>
+  <img src= 'https://goo.gl/iWAup3' align="middle" class="img-responsive" height="600">
 
 </body>
 </div>
@@ -12,7 +12,7 @@
     <%= @game.player_one.name %> <%= @game.player_one.hp %>HP
   </div>
   <div class="col-sm-6 text-centre">
-    <form action='/next' method="post">
+    <form action='/play'>
     <input class="btn btn-default" type='submit' value='Next turn' name='Next'>
     </form>
   </div>
