@@ -16,4 +16,22 @@ class Chance
     ]
     options[rand(0..(options.count - 1))]
   end
+
+  def self.hit_msg
+    options = [
+      'got a slap in the face!',
+      'got kicked in the shin!',
+      'got a noogie!'
+    ]
+    options[rand(0..(options.count - 1))]
+  end
+
+  def self.crit_msg
+    options = [
+      'GOT POWERBOMBED ON THE APRON!',
+      'GOT SUPERPLEXED OFF THE TOP TURNBUCKLE!',
+      'GOT A DDT ON THE ARENA FLOOR!'
+    ]
+    options[rand(0..(options.count - 1))]
+  end
 end

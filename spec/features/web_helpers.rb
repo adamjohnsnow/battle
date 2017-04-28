@@ -6,7 +6,7 @@ def sign_in_and_play
 end
 
 def play_full_game
-  10.times do
+  18.times do
     srand(111)
     click_button 'ATTACK'
     click_button 'Next'

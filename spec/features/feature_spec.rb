@@ -17,12 +17,12 @@ feature 'Testing infrastructure' do
 
   scenario 'returns names & hit points' do
     sign_in_and_play
-    expect(page).to have_content('PlayerOne 60HP')
+    expect(page).to have_content('PlayerOne 100HP')
   end
 
   scenario 'returns names & hit points' do
     sign_in_and_play
-    expect(page).to have_content('PlayerTwo 60HP')
+    expect(page).to have_content('PlayerTwo 100HP')
   end
 end
 
@@ -43,14 +43,14 @@ feature 'Playing the game' do
     sign_in_and_play
     srand(111)
     click_button 'ATTACK'
-    expect(page).to have_content('PlayerTwo got hit!')
+    expect(page).to have_content('PlayerTwo got a slap in the face!')
   end
 
   scenario 'reports who got critical hit' do
     sign_in_and_play
     srand(123)
     click_button 'ATTACK'
-    expect(page).to have_content('PlayerTwo CRITICAL HIT!')
+    expect(page).to have_content('PlayerTwo GOT A DDT ON THE ARENA FLOOR!')
   end
 
   scenario 'reports who got healed' do

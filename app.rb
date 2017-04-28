@@ -2,7 +2,6 @@ require 'sinatra/base'
 require './lib/player_model'
 require './lib/game'
 require './lib/chance'
-require 'pry'
 
 # manages player journey through game
 
@@ -34,14 +33,14 @@ class Battle < Sinatra::Base
   end
 
   get '/hit' do
-    @message = 'got hit!'
+    @message = Chance.hit_msg
     @game = Game.instance
     @player = @game.players[1].name
     erb(:confirm)
   end
 
   get '/crit' do
-    @message = 'CRITICAL HIT!'
+    @message = Chance.crit_msg
     @game = Game.instance
     @player = @game.players[1].name
     erb(:confirm)
