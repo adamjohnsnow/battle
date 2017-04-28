@@ -1,13 +1,23 @@
-<h1> <%= @game.player_one.name %> vs <%= @game.player_two.name %> for the Makers Academy Wrestling Championship!</h1>
-<p>
-  <p>
-    <div>
-      <%= @game.player_one.name %> <%= @game.player_one.hp %>HP <p>
-      <%= @game.player_two.name %> <%= @game.player_two.hp %>HP
-    </div>
-    <p>
-      <%= @player %> <%= @message %>
-      <p>
-        <form action='/next' method="post">
-        <input type='submit' value='Next turn' name='Next'>
-        </form>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+<div class="container-fluid">
+
+<img src='https://goo.gl/iogD7c' class="img-responsive" height="150">
+<h1 class="text-primary text-centre"> <%= @player %> <%= @message %> </h1>
+<img src= 'https://goo.gl/iWAup3' align="middle" class="img-responsive" height="600">
+
+</body>
+</div>
+<div class="row container-fluid">
+  <div class="col-sm-3 text-centre">
+    <%= @game.player_one.name %> <%= @game.player_one.hp %>HP
+  </div>
+  <div class="col-sm-6 text-centre">
+    <form action='/next' method="post">
+    <input class="btn btn-default" type='submit' value='Next turn' name='Next'>
+    </form>
+  </div>
+
+  <div class="col-sm-3 text-centre">
+    <%= @game.player_two.name %> <%= @game.player_two.hp %>HP
+  </div>
+</div>

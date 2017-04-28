@@ -11,8 +11,7 @@ feature 'Testing infrastructure' do
 
   scenario 'entering player names' do
     sign_in_and_play
-    expect(page).to have_content('PlayerOne vs PlayerTwo
-    for the Makers Academy Wrestling Championship!')
+    expect(page).to have_content('PlayerOne')
   end
 
   scenario 'returns names & hit points' do
@@ -70,6 +69,6 @@ feature 'Playing the game' do
   scenario 'player one win' do
     sign_in_and_play
     play_full_game
-    expect(page).to have_content('PlayerOne WINS!')
+    expect(page).to have_content('PLAYERONE IS THE NEW CHAMPION!')
   end
 end

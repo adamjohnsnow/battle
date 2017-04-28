@@ -2,6 +2,7 @@ require 'sinatra/base'
 require './lib/player_model'
 require './lib/game'
 require './lib/chance'
+require 'bootstrap'
 
 # manages player journey through game
 
@@ -77,6 +78,9 @@ class Battle < Sinatra::Base
     erb(:confirm)
   end
 
+  post '/new' do
+    redirect '/'
+  end
   private
 
   def miss_redirect(hit)

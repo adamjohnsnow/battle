@@ -1,1 +1,5 @@
-<%= @winner %> WINS!
+<h1> 1... 2... 3... <p>
+<%= @winner.upcase %> IS THE NEW CHAMPION!</h1>
+<form action='/new' method="post">
+<input type='submit' value='New Game' name='new'>
+</form>

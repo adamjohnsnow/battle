@@ -1,17 +1,29 @@
-<h1> <%= @game.player_one.name %> vs <%= @game.player_two.name %> for the Makers Academy Wrestling Championship!</h1>
-<p>
-  <p>
-    <div>
-      <%= @game.player_one.name %> <%= @game.player_one.hp %>HP <p>
-      <%= @game.player_two.name %> <%= @game.player_two.hp %>HP
-    </div>
-    <p>
-      <%= @game.players[0].name %>'s turn!
-      <p>
+<body>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+  <div class="container-fluid">
 
-      <form action='/attack' method='post'>
-      <input type='submit' value='ATTACK' name='Attack'>
-      </form>
-      <form action='/heal' method='post'>
-      <input type='submit' value='HEAL' name='Heal'>
-      </form>
+  <img src='https://goo.gl/iogD7c' class="img-responsive" height="150">
+  <h1 class="text-primary text-centre"> <%= @game.players[0].name %>'s turn! </h1>
+  <img src= 'https://goo.gl/iWAup3' align="middle" class="img-responsive" height="600">
+
+
+</body>
+</div>
+<div class="row container-fluid">
+  <div class="col-sm-3 text-centre">
+    <%= @game.player_one.name %> <%= @game.player_one.hp %>HP
+  </div>
+  <div class="col-sm-3 text-centre">
+    <form action='/attack' method='post'>
+    <input class="btn btn-default" type='submit' value='ATTACK' name='Attack'>
+    </form>
+  </div>
+  <div class="col-sm-3 text-centre">
+    <form action='/heal' method='post'>
+    <input class="btn btn-default" type='submit' value='HEAL' name='Heal'>
+    </form>
+  </div>
+  <div class="col-sm-3 text-centre">
+    <%= @game.player_two.name %> <%= @game.player_two.hp %>HP
+  </div>
+</div>
